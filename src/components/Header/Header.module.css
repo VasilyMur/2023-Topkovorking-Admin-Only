@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.1) 0px -1px 0px 0px inset;
-    padding: 0 20px;
+    padding: 12px 20px;
 
 
 }
@@ -34,12 +34,7 @@
 .mobileMenu {
 
 }
-.mobileMenuHeader {
-    padding: 16px 12px;
-    margin-bottom: 16px;
-    justify-content: space-between;
-    align-items: center;
-}
+
 .mobileMenuHeader svg {
     cursor: pointer;
 }
