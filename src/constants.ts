@@ -1,12 +1,12 @@
 export const URL_BASE = 
     process.env.NODE_ENV === 'development'
     ? 'http://localhost:8080/api'
-    : 'https://topkovorking2023.herokuapp.com/api';
+    : 'https://topkovorking-2023-admin.herokuapp.com/api';
 
 export const URL_BASE_WEBSITE = 
     process.env.NODE_ENV === 'development'
     ? 'http://localhost:8080'
-    : 'https://topkovorking2023.herokuapp.com';
+    : 'https://topkovorking-2023-admin.herokuapp.com';
 
 export const PATH_TO_IMAGE_URL =  `https://files.cloudimages.ru/file/topkovorking`;
 
