@@ -1,0 +1,1 @@
+export const GTAG_TRACKING_ID = 'GTM-MCJDDK2';

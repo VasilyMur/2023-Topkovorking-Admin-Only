@@ -1,0 +1,65 @@
+
+.layoutAdminWrap {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+/* .container {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1;
+} */
+
+.workspace {
+  width: 100%;
+}
+
+.styledMenu {
+  height: 100%;
+  width: 160px;
+  padding-top: 226px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.styledMenu ul {
+  margin: 0;
+  padding: 0;
+}
+.styledMenu ul li {
+  list-style: none;
+  margin-bottom: 10px;
+
+  a[aria-disabled='true'] {
+    color: rgb(222, 231, 249);
+    pointer-events: none;
+  }
+}
+.styledMenu ul li a {
+  border-radius: 4px;
+  color: rgb(118, 129, 172);
+  display: block;
+  font-size: 14px;
+  line-height: calc(18px);
+  padding: 11px 16px;
+  width: 100%;
+  position: relative;
+}
+
+
+.active {
+  color: rgb(47, 47, 76);
+  background: rgb(245, 247, 253) none repeat scroll 0% 0%;
+}
+
+.active::before {
+  background: rgba(0, 0, 0, 0) linear-gradient(90deg, rgb(111, 137, 251) 0%, rgb(97, 109, 245) 33%, rgb(92, 82, 235) 100%) repeat scroll 0% 0%;
+  content: "";
+  height: 100%;
+  left: -10px;
+  position: absolute;
+  top: 0px;
+  width: 2px;
+}

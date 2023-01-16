@@ -1,0 +1,27 @@
+.container {
+  flex-direction: column;
+  width: 480px;
+  margin: 10vh auto 10vh;
+  box-shadow: rgba(11, 43, 158, 0.15) 0px 6px 20px -6px;
+  border: 1px solid rgba(91, 105, 135, 0.22);
+  padding: 24px;
+  background: #fff;
+}
+
+.wrap {
+  flex-direction: column;
+}
+
+.form {
+  gap: 20px;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.register {
+  color: #333;
+  border-bottom: 1px dotted #aaaaaa;
+  display: inline-block;
+}
+
+

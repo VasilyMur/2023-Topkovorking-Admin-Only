@@ -1,0 +1,73 @@
+.container {
+  flex-direction: column;
+  width: 100%;
+
+  .messageBox {
+    padding: 20px;
+    margin-bottom: 16px;
+    flex-direction: column;
+    background: rgb(251, 252, 254);
+    border-bottom: 1px solid rgb(222, 231, 249);
+    color: rgb(94, 107, 150);
+
+    .messageBoxItem {
+      display: flex;
+      align-items: center;
+      p {margin: 0}
+      svg {
+        margin-left: 10px;
+        font-size: 18px;
+      }
+      margin-bottom: 16px;
+    }
+    .messageBoxItemRight {
+      display: flex;
+      align-items: center;
+      p {margin: 0}
+    }
+
+    p {
+      margin: 0 0 10px;
+    }
+    
+    .message {
+      display: flex;
+      align-items: center;
+    }
+    
+    .message svg {
+      margin-right: 10px;
+      color: rgb(255, 92, 136);
+    }
+    
+  }
+  
+  // Admin Content
+  .adminContent {
+    max-width: 800px;
+    margin: 0 auto 60px;
+  }
+
+  // Filters
+  .filtersContainer {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .filtersWrap {
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .filtersSearchCheck{
+
+  }
+  
+}
+
+
+

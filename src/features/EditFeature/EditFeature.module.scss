@@ -1,0 +1,96 @@
+.container {
+  flex-direction: column;
+  width: 100%;
+  padding: 40px 0 60px 42px;
+
+  .editForm {
+    max-width: 600px;
+    flex-direction: column;
+  }
+}
+// Hours
+.hoursDaysContainer {
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.hoursDaysRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
+  p {
+    padding: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+.hoursDaySelector {
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 10px;
+}
+
+// Offers
+
+.offersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offersPriceWrap {
+  display: grid;
+  grid-template-columns: 1fr 10px 1fr;
+  align-items: center;
+  gap: 20px;
+}
+
+.offersActiveContainer {
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.offersActiveRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  p {
+    padding: 5px;
+  }
+}
+
+.offersActiveRowCloseBtn {
+  cursor: pointer;
+  text-align: center;
+  padding: 5px;
+  max-width: 40px;
+  flex: 1;
+}
+
+// Images
+.formImageLarge {
+  max-width: 570px;
+  height: 380px;
+  margin-top: 16px;
+  
+  img {
+    width: 100%;
+    object-fit: cover;
+    box-shadow: rgb(212, 212, 212) 0px 0px 0px 1px;
+    border: 2px solid rgb(255, 255, 255);
+  }
+}
+.formImageSmall {
+  max-width: 160px;
+  height: 160px;
+  margin-top: 16px;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    box-shadow: rgb(212, 212, 212) 0px 0px 0px 1px;
+    border: 2px solid rgb(255, 255, 255);
+  }
+}
+
