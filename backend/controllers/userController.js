@@ -79,7 +79,6 @@ exports.createDb = async (req, res) => {
 
 exports.register = async (req, res, next) => {
   try {
-    console.log('req.body register >>>> ', req.body)
     const { email, password } = req.body;
 
     const userData = await userHandler.register(email, password);
@@ -96,11 +95,10 @@ exports.register = async (req, res, next) => {
       const activationLink = req.params.link;
       await userHandler.activate(activationLink);
 
-      const redirectLink = process.env.NODE_ENV 
-        ? process.env.HOST_URL_DEV 
-        : process.env.HOST_URL_PROD;
-
-        console.log('redirectLink >>>> ', redirectLink) 
+      const redirectLink = 'https://offizz.ru';
+      // process.env.NODE_ENV 
+      //   ? process.env.HOST_URL_DEV 
+      //   : process.env.HOST_URL_PROD;
         
       return res.redirect(redirectLink);
     } catch (err) {

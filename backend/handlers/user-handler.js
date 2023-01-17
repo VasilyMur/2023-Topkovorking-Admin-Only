@@ -24,7 +24,7 @@ exports.register = async (email, password) => {
     process.env.NODE_ENV === 'development'
       ? process.env.HOST_URL_DEV
       : process.env.HOST_URL_PROD
-  }/activate/${activationLink}`;
+  }/api/activate/${activationLink}`;
 
   await mailHandler.send({
     user: userNew,
