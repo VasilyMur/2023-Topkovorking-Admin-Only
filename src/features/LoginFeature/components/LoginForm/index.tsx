@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { Button, TextField, Alert } from '@mui/material';
 import { useActions, useStateSelector } from '../../../../hooks';
 import Flexbox from '../../../../components/Flexbox';
-import styles from '../../LoginFeature.module.css';
+import styles from '../../LoginFeature.module.scss';
 
 const LoginForm: FC = () => {
   const [email, setEmail] = useState<string>('');

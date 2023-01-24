@@ -148,32 +148,41 @@ exports.getUserSpace = async (id) => {
 
   exports.saveUserSpace = async (data, userId, userRole) => {
     const { _id, ...rest } = data;
+    const slug = data.slug ? data.slug : Date.now().toString();
 
-    const adminFields = userRole !== 'admin' 
-    ? {slug: Date.now().toString(), tags: [], publishStatus: constants.COMPANY_PUBLISH_STATUS_PENDING}
-    : {slug: data.slug ? data.slug : Date.now().toString(), tags: data.tags};
-
+    // IF NEW
     if (!data._id && !data.admin) {
       const newSpace = {
         ...rest,
         admin: userId,
         publishStatus: constants.COMPANY_PUBLISH_STATUS_PENDING,
-        ...adminFields
+        slug: userRole !== 'admin' ? Date.now().toString() : slug,
+        tags: userRole !== 'admin' ? [] : data.tags,
       };
       const responseNew = await new Space(newSpace);
       await responseNew.save();
 
       return responseNew;
 
-    } 
+    // eslint-disable-next-line no-else-return
+    } else {
+      const spaceToUpdate = await Space.findOne({ _id: data._id });
 
-      const responseUpdate = await Space.findOneAndUpdate(
-        { _id: data._id }, 
-        { ...rest, ...adminFields }, 
-        { new: true}
-        );
+      const updateSpaceBody = {
+        ...rest,
+        publishStatus: constants.COMPANY_PUBLISH_STATUS_PENDING,
+        slug: userRole !== 'admin' ? spaceToUpdate.slug : slug,
+        tags: userRole !== 'admin' ? spaceToUpdate.tags : data.tags,
+      }
 
-      return responseUpdate;
+        const responseUpdate = await Space.findOneAndUpdate(
+          { _id: data._id }, 
+          updateSpaceBody, 
+          { new: true}
+          );
+  
+        return responseUpdate;
+    }
     
   }
 

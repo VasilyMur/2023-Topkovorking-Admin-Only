@@ -22,7 +22,7 @@ const userSchema = new Schema({
   },
   canCreate: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   activationLink: {
     type: String

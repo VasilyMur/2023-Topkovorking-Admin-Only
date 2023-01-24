@@ -6,6 +6,10 @@
   border: 1px solid rgba(91, 105, 135, 0.22);
   padding: 24px;
   background: #fff;
+
+  @media (max-width: 520px) {
+    width: 90%;
+  }
 }
 
 .wrap {

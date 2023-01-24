@@ -19,19 +19,28 @@ const AdminContent: FC = () => {
     <div className={styles.adminContent}>
       {spaces && spaces.length ? null : (
         <>
-          <Typography variant="body1" mb="16px">
-            Активируйте ваш эккаунт, подтвердив свой email
+          <Typography variant="body1" mb="16px" sx={{ color: '#fe7968' }}>
+            У вас пока нет доступных пространств
           </Typography>
 
           <Typography variant="body1" mb="16px">
-            Если ваше пространство уже добавлено на сайт - обратитесь к
-            администратору, чтобы добавить его в ваш эккаунт (telegram:
+            1. Активируйте ваш эккаунт, подтвердив свой email
+          </Typography>
+
+          <Typography variant="body1" mb="16px">
+            2. После активации вы сможете добавить новое пространство - через
+            вкладку "Добавить"
+          </Typography>
+
+          <Typography variant="body1" mb="16px">
+            3. Модерация нового пространства занимает около 24 часов. Если
+            требуется ускорить процесс - обратитесь к администратору (telegram:
             @topkovorking)
           </Typography>
 
           <Typography variant="body1" mb="16px">
-            Если вы хотите добавить новое пространство - обратитесь к
-            администратору, чтобы активировать вкладку "Добавить" (telegram:
+            4. Если ваше пространство уже добавлено на сайт - обратитесь к
+            администратору, чтобы добавить его в ваш эккаунт (telegram:
             @topkovorking)
           </Typography>
         </>

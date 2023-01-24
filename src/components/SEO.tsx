@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
 import Head from 'next/head';
 
-const siteName = 'Topkovorking.ru';
-const title = 'Коворкинги Москвы 2023 (адрес, телефон, фото)';
-const description =
-  'Лучшие коворкинги Москвы - на карте города с указанием адреса, времени работы, контактами и ценами. Разбивка коворкингов по станциям метро.';
-const canonical = 'https://topkovorking.ru';
+const siteName = 'Offizz.ru';
+const title = 'Сервис управления офисными пространствами';
+const description = 'Сервис управления офисными пространствами';
+const canonical = 'https://offizz.ru';
 
 interface SEOProps {
   pageMeta?: {

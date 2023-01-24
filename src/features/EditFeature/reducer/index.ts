@@ -113,8 +113,7 @@ export const editSlice = createSlice({
             s.step -= 1;
         })
         .addCase(Actions.setUserSpace, (s, a) => {
-            const { schedule, ...rest } = a.payload.space;
-            s.space = { ...rest, schedule: { ...s.space.schedule} };
+            s.space = a.payload.space;
             s.alert = '';
         })
         .addCase(Actions.inputChange, (s, a) => {

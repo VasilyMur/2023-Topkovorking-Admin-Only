@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Typography } from '@mui/material';
 import LoginForm from './components/LoginForm';
 import Flexbox from '../../components/Flexbox';
-import styles from './LoginFeature.module.css';
+import styles from './LoginFeature.module.scss';
 
 const LoginFeature: FC = () => (
   <Flexbox className={styles.container}>

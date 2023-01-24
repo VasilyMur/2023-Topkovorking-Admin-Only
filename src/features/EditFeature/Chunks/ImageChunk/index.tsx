@@ -132,7 +132,7 @@ const ImageChunk = () => {
             onClick={onSpaceDataSave}
             sx={{ maxWidth: '200px' }}
             variant="contained"
-            disabled={displayLoaderOne || displayLoaderTwo}
+            disabled={displayLoaderOne || displayLoaderTwo || state.isLoading}
           >
             Сохранить все данные
           </Button>

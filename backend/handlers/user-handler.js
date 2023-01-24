@@ -88,8 +88,8 @@ exports.refresh = async (refreshToken) => {
 
   const userData = await tokenHandler.validateRefreshToken(refreshToken);
   const tokenFromDb = await tokenHandler.findToken(refreshToken);
-  console.log('1) refresh handler userData check >>>> ', userData)
-  console.log('2) refresh handler tokenFromDb check >>>> ', tokenFromDb)
+  // console.log('1) refresh handler userData check >>>> ', userData)
+  // console.log('2) refresh handler tokenFromDb check >>>> ', tokenFromDb)
   if (!userData || !tokenFromDb) {
     console.log('2 --- error !userData || !tokenFromDb')
     throw ApiError.UnauthorizedError();
@@ -100,7 +100,7 @@ exports.refresh = async (refreshToken) => {
 
   const userDto = new UserDto(endUser);
   const tokens = tokenHandler.generateTokens({ ...userDto });
-  console.log('3) GENERATED NEW!!!!!!!!!!!!!!!!!!!!!! >>>> ', tokens.refreshToken)
+  // console.log('3) GENERATED NEW!!!!!!!!!!!!!!!!!!!!!! >>>> ', tokens.refreshToken)
   await tokenHandler.saveToken(UserDto.id, tokens.refreshToken);
   return { ...tokens, user: userDto };
 }

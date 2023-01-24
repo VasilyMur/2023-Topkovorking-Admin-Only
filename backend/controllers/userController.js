@@ -138,7 +138,7 @@ exports.register = async (req, res, next) => {
     try {
 
       const { refreshToken } = req.cookies;
-      console.log('************************* REFRESH >>> got token from request ', refreshToken)
+      // console.log('************************* REFRESH >>> got token from request ', refreshToken)
       const userData = await userHandler.refresh(refreshToken);
 
      

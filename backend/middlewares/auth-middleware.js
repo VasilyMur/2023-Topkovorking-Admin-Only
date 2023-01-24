@@ -2,11 +2,11 @@ const ApiError  = require('../exceptions/api-error');
 const tokenHandler = require('../handlers/token-handler');
 
 module.exports = async function (req, res, next) {
-    console.log('auth middleware ---------------->>> ', req.user)
+    // console.log('auth middleware ---------------->>> ', req.user)
     // console.log('server call >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ---------------->>> ', req)
     try {
         const authorizationHeader = req.headers.authorization;
-        console.log('authorizationHeader >>>>>> ', authorizationHeader)
+        // console.log('authorizationHeader >>>>>> ', authorizationHeader)
 
         if (!authorizationHeader) {
             return next(ApiError.UnauthorizedError());

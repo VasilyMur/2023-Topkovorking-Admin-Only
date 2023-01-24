@@ -24,7 +24,7 @@ const RequestsFeature: FC = () => {
       <Flexbox maxWidth="600px" flexDirection="column" flex="1">
         {state.userRequests.length
           ? state.userRequests.map((r) => <CardRequest key={r._id} data={r} />)
-          : 'К вам пока не поступали запросы.'}
+          : 'К вам пока не поступали запросы от клиентов.'}
       </Flexbox>
     </Flexbox>
   );
