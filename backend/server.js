@@ -35,12 +35,12 @@ nextApp
     const server = express();
     server.use(express.json());
     server.use(cookieParser());
-    // server.use(cors({
-    //     credentials: true,
-    //     origin: process.env.HOST_URL_DEV
-    // }));
+    server.use(cors({
+        credentials: true,
+        origin: 'https://offizz.ru'
+    }));
     // server.use(cors());
-    server.use(cors({ origin: true, credentials: true }));
+
 
     server.use('/api', routes);
     server.use(errorMiddleware);
