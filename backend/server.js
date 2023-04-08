@@ -37,7 +37,7 @@ nextApp
     server.use(cookieParser());
     server.use(cors({
         credentials: true,
-        origin: 'https://offizz.ru'
+        origin: 'https://www.trendymoscow.com'
     }));
     // server.use(cors());
 
