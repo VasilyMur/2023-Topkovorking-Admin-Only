@@ -39,7 +39,8 @@ nextApp
     //     credentials: true,
     //     origin: process.env.HOST_URL_DEV
     // }));
-    server.use(cors());
+    // server.use(cors());
+    server.use(cors({ origin: true, credentials: true }));
 
     server.use('/api', routes);
     server.use(errorMiddleware);
