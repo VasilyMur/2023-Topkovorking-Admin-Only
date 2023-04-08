@@ -1,5 +1,6 @@
 const express = require('express');
 const next = require('next');
+const cors = require('cors')
 const cookieParser = require('cookie-parser');
 require('dotenv').config({ path: 'variables.env' });
 
@@ -38,6 +39,8 @@ nextApp
     //     credentials: true,
     //     origin: process.env.HOST_URL_DEV
     // }));
+    server.use(cors());
+
     server.use('/api', routes);
     server.use(errorMiddleware);
 
