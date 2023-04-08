@@ -80,12 +80,14 @@ export const SPACE_OFFER_TYPE_HOUR = 'hour';
 export const SPACE_OFFER_TYPE_DAY = 'day';
 export const SPACE_OFFER_TYPE_WEEK = 'week';
 export const SPACE_OFFER_TYPE_MONTH = 'month';
+export const SPACE_OFFER_TYPE_YEAR = 'year';
 
 export const SPACE_OFFER_TYPES_MAPPED = {
     [SPACE_OFFER_TYPE_HOUR]: 'час',
     [SPACE_OFFER_TYPE_DAY]: 'день',
     [SPACE_OFFER_TYPE_WEEK]: 'неделя',
     [SPACE_OFFER_TYPE_MONTH]: 'месяц',
+    [SPACE_OFFER_TYPE_YEAR]: 'год',
 };
 
 export const CITY_NAME_MOSCOW = 'moscow';
@@ -155,6 +157,13 @@ export const COUNTRY_PHONE_CODES_MAPPED = {
     [COUNTRY_NAME_UAE]: '+971',
     [COUNTRY_NAME_ARMENIA]: '+374',
     [COUNTRY_NAME_GEORGIA]: '+995',
+}
+
+export const COUNTRY_CURRENCY_MAPPED = {
+    [COUNTRY_NAME_RUSSIA]: '₽',
+    [COUNTRY_NAME_UAE]: 'AED',
+    [COUNTRY_NAME_ARMENIA]: 'AMD',
+    [COUNTRY_NAME_GEORGIA]: 'Лари',
 }
 
 

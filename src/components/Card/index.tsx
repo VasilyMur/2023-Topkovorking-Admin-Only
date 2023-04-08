@@ -3,7 +3,10 @@ import Link from 'next/link';
 import { Typography } from '@mui/material';
 import TrainIcon from '@mui/icons-material/Train';
 import { ISpace } from '../../models/ISpace';
-import { URL_PAGE_SINGLE_KOVORKING } from '../../constants';
+import {
+  URL_PAGE_SINGLE_KOVORKING,
+  COUNTRY_CURRENCY_MAPPED
+} from '../../constants';
 import { capetalize, cutAddress, getExcerpt } from '../../helpers';
 import OffersList from './OffersList';
 import styles from './Card.module.scss';
@@ -21,9 +24,13 @@ const Card: FC<CardProps> = ({ data }) => {
     slug,
     subway,
     priceDay,
-    offers
+    offers,
+    country
   } = data;
   const { address } = location;
+
+  const currencySymbol =
+    COUNTRY_CURRENCY_MAPPED[country as keyof typeof COUNTRY_CURRENCY_MAPPED];
 
   return (
     <div className={styles.container}>
@@ -56,7 +63,9 @@ const Card: FC<CardProps> = ({ data }) => {
         {address ? <address>{cutAddress(address)}</address> : null}
 
         {priceDay ? (
-          <div className={styles.cardRate}>{`от ${priceDay} ₽ / День`}</div>
+          <div className={styles.cardRate}>
+            {`от ${priceDay} ${currencySymbol} / День`}
+          </div>
         ) : null}
 
         <div className={styles.description}>
@@ -73,7 +82,9 @@ const Card: FC<CardProps> = ({ data }) => {
         </div>
       </div>
 
-      {offers && !!offers.length && <OffersList offers={offers} slug={slug} />}
+      {offers && !!offers.length && (
+        <OffersList offers={offers} country={country} slug={slug} />
+      )}
     </div>
   );
 };

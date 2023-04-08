@@ -1,4 +1,5 @@
 // const constants = require('../constants');
+const requestIp = require('request-ip');
 const mongoose = require('mongoose');
 require('../models/Token');
 const Token = mongoose.model('Token');
@@ -207,3 +208,20 @@ exports.register = async (req, res, next) => {
       next(err);
     }
   }
+
+
+  // TEST TO DELETE
+  exports.processTraffic = async (req, res) => {
+    try {
+  
+      console.log('ready to process >>>>>>>>>>>>>>>>>>>>> ');
+      const clientIp = requestIp.getClientIp(req); 
+      console.log('client IP >>>>>> ', clientIp);
+  
+        res.status(200).send('test api');
+        return; // добавил return и не протестировал!
+  
+    } catch (e) {
+      console.log(e);
+    }
+  };

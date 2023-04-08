@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import Flexbox from '../../../../components/Flexbox';
 import { useActions, useStateSelector } from '../../../../hooks';
-import { SPACE_OFFER_TYPES_MAPPED } from '../../../../constants';
+import { SPACE_OFFER_TYPES_MAPPED, COUNTRY_CURRENCY_MAPPED } from '../../../../constants';
 import ActiveOffers from './ActiveOffers';
 import styles from '../../EditFeature.module.scss';
 
@@ -94,7 +94,7 @@ const Offers: FC = () => {
               value={price}
               disabled={state.isLoading}
             />
-            ₽
+            {COUNTRY_CURRENCY_MAPPED[state.space.country as keyof typeof COUNTRY_CURRENCY_MAPPED]}
             <FormControl fullWidth size="small">
               <InputLabel>Тип стоимости</InputLabel>
               <Select

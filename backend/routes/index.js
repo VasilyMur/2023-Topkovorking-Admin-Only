@@ -158,6 +158,13 @@ router.get('/staticGetSingleSpace/:slug', staticController.getSingleSpace);
 router.get('/staticGetAllSpaces', staticController.getAllSpaces);
 
 
+// TEST >>> to delete
+router.post('/processTraffic', 
+    authMiddleware,
+    userController.processTraffic
+    );
+
+
 
 
 
