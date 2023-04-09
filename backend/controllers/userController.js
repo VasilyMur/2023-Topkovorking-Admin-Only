@@ -218,6 +218,7 @@ exports.register = async (req, res, next) => {
       const clientIp = requestIp.getClientIp(req); 
       console.log('client IP >>>>>> ', clientIp);
       console.log('req IP >>>>>> ', req.ip);
+      console.log('FingerPrint ----- >>>>>> ', req.fingerprint);
 
       const script = `(function() {
                         "use strict";

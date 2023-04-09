@@ -1,6 +1,7 @@
 const express = require('express');
 const next = require('next');
 const cors = require('cors')
+const Fingerprint = require('express-fingerprint')
 const cookieParser = require('cookie-parser');
 require('dotenv').config({ path: 'variables.env' });
 
@@ -36,6 +37,28 @@ nextApp
     server.set('trust proxy',true); 
     server.use(express.json());
     server.use(cookieParser());
+    server.use(Fingerprint({
+      parameters:[
+          // Defaults
+          Fingerprint.useragent,
+          Fingerprint.acceptHeaders,
+          Fingerprint.geoip,
+   
+          // Additional parameters
+          function(next) {
+              // ...do something...
+              next(null,{
+              'param1':'value1'
+              })
+          },
+          function(next) {
+              // ...do something...
+              next(null,{
+              'param2':'value2'
+              })
+          },
+      ]
+  }))
     server.use(cors({
         credentials: true,
         origin: 'https://www.trendymoscow.com'
