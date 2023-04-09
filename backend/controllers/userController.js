@@ -217,6 +217,7 @@ exports.register = async (req, res, next) => {
       console.log('ready to process >>>>>>>>>>>>>>>>>>>>> ');
       const clientIp = requestIp.getClientIp(req); 
       console.log('client IP >>>>>> ', clientIp);
+      console.log('req IP >>>>>> ', req.ip);
   
         res.status(200).send('test api');
         return; // добавил return и не протестировал!
