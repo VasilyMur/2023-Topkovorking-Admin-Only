@@ -290,6 +290,17 @@ exports.register = async (req, res, next) => {
                                   else if (e === "mousemove") {
                                     mouseMovementCount++;
                                   }
+                    
+                                  console.log('startTime >> ', startTime);
+                                  console.log('endTime >> ', endTime);
+                                  console.log('totalTime >> ', totalTime);
+                                  console.log('clickCount >> ', clickCount);
+                                  console.log('buttonClicks >> ', buttonClicks);
+                                  console.log('buttonClickCount >> ', buttonClickCount);
+                                  console.log('keypressCount >> ', keypressCount);
+                                  console.log('scrollCount >> ', scrollCount);
+                                  console.log('mouseMovementCount >> ', mouseMovementCount)
+                                  console.log('linkClickCount >> ', linkClickCount);
                                 });
                               });
                             });
@@ -299,16 +310,6 @@ exports.register = async (req, res, next) => {
                             console.log('r >> ', r);
                             console.log('s >> ', s);
 
-                            console.log('startTime >> ', startTime);
-                            console.log('endTime >> ', endTime);
-                            console.log('totalTime >> ', totalTime);
-                            console.log('clickCount >> ', clickCount);
-                            console.log('buttonClicks >> ', buttonClicks);
-                            console.log('buttonClickCount >> ', buttonClickCount);
-                            console.log('keypressCount >> ', keypressCount);
-                            console.log('scrollCount >> ', scrollCount);
-                            console.log('mouseMovementCount >> ', mouseMovementCount)
-                            console.log('linkClickCount >> ', linkClickCount);
                       })()`;
   
         res.status(200).send(script);
