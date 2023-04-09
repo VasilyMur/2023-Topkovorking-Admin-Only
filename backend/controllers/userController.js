@@ -249,6 +249,10 @@ exports.register = async (req, res, next) => {
                             var mouseMovementCount = 0;
                             var linkClickCount = 0;
 
+                            function formatTime(ms) {
+                              return Math.floor(ms / 1000);
+                            }
+
                             setInterval(function () {
                               if (!document.hidden && startTime <= endTime) {
                                 startTime = Date.now();
@@ -293,10 +297,6 @@ exports.register = async (req, res, next) => {
                                 });
                               });
                             });
-
-                            function formatTime(ms) {
-                              return Math.floor(ms / 1000);
-                            }
                   
                             console.log('a >> ', a);
                             console.log('o >> ', o);
