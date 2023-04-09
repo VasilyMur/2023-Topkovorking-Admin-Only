@@ -33,6 +33,7 @@ nextApp
   .prepare()
   .then(() => {
     const server = express();
+    server.set('trust proxy',true); 
     server.use(express.json());
     server.use(cookieParser());
     server.use(cors({
