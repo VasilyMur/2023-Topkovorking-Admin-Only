@@ -218,8 +218,21 @@ exports.register = async (req, res, next) => {
       const clientIp = requestIp.getClientIp(req); 
       console.log('client IP >>>>>> ', clientIp);
       console.log('req IP >>>>>> ', req.ip);
+
+      const script = `(function() {
+                        "use strict";
+                        var a = window.location,
+                            o = window.document,
+                            r = o.currentScript,
+                            s = r.getAttribute("data-api") || new URL(r.src).origin + "/api/event";
+                  
+                            console.log('a >> ', a);
+                            console.log('o >> ', o);
+                            console.log('r >> ', r);
+                            console.log('s >> ', s);
+                      })()`;
   
-        res.status(200).send('ok');
+        res.status(200).send(script);
         return; // добавил return и не протестировал!
   
     } catch (e) {
