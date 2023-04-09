@@ -40,7 +40,7 @@
         var linkClickCount = 0;
       
         setInterval(function () {
-          if (!document.hidden && startTime <= endTime) {
+          if (!o.hidden && startTime <= endTime) {
             startTime = Date.now();
             totalTime += ONE_SECOND;
 
@@ -52,11 +52,11 @@
             return Math.floor(ms / 1000);
           }
       
-        document.addEventListener("DOMContentLoaded", function () {
+       // o.addEventListener("DOMContentLoaded", function () {
           console.log('window.location.pathname >>> ', window.location.pathname);
 
           events.forEach(function (e) {
-            document.addEventListener(e, function () {
+            o.addEventListener(e, function () {
               endTime = Date.now() + INTERVAL_WAIT;
               if (e === "mouseup") {
                 clickCount++;
@@ -93,7 +93,7 @@
               console.log('linkClickCount >> ', linkClickCount);
             });
           });
-        });
+       // });
       
       
 

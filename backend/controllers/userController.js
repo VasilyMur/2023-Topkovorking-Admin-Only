@@ -262,46 +262,44 @@ exports.register = async (req, res, next) => {
                               }
                             }, ONE_SECOND);
 
-                            document.addEventListener("DOMContentLoaded", function () {
-                              console.log('window.location.pathname >>> ', window.location.pathname);
-                    
-                              events.forEach(function (e) {
-                                document.addEventListener(e, function () {
-                                  endTime = Date.now() + INTERVAL_WAIT;
-                                  if (e === "mouseup") {
-                                    clickCount++;
-                                    if (event.target.nodeName === 'BUTTON') {          
-                                      if(!buttonClicks[event.target.innerText]){
-                                        buttonClicks[event.target.innerText] = 0;
-                                      }
-                                      buttonClicks[event.target.innerText] += 1;
-                                      buttonClicks.total += 1;         
+                            console.log('window.location.pathname >>> ', window.location.pathname);
+
+                            events.forEach(function (e) {
+                              o.addEventListener(e, function () {
+                                endTime = Date.now() + INTERVAL_WAIT;
+                                if (e === "mouseup") {
+                                  clickCount++;
+                                  if (event.target.nodeName === 'BUTTON') {          
+                                    if(!buttonClicks[event.target.innerText]){
+                                      buttonClicks[event.target.innerText] = 0;
                                     }
-                                    else if (event.target.nodeName === 'A') {
-                                      linkClickCount++;
-                                    }
+                                    buttonClicks[event.target.innerText] += 1;
+                                    buttonClicks.total += 1;         
                                   }
-                                  else if (e === "keydown") {
-                                    keypressCount++;
+                                  else if (event.target.nodeName === 'A') {
+                                    linkClickCount++;
                                   }
-                                  else if (e === "scroll") {
-                                    scrollCount++;
-                                  }
-                                  else if (e === "mousemove") {
-                                    mouseMovementCount++;
-                                  }
-                    
-                                  console.log('startTime >> ', startTime);
-                                  console.log('endTime >> ', endTime);
-                                  console.log('totalTime >> ', totalTime);
-                                  console.log('clickCount >> ', clickCount);
-                                  console.log('buttonClicks >> ', buttonClicks);
-                                  console.log('buttonClickCount >> ', buttonClickCount);
-                                  console.log('keypressCount >> ', keypressCount);
-                                  console.log('scrollCount >> ', scrollCount);
-                                  console.log('mouseMovementCount >> ', mouseMovementCount)
-                                  console.log('linkClickCount >> ', linkClickCount);
-                                });
+                                }
+                                else if (e === "keydown") {
+                                  keypressCount++;
+                                }
+                                else if (e === "scroll") {
+                                  scrollCount++;
+                                }
+                                else if (e === "mousemove") {
+                                  mouseMovementCount++;
+                                }
+                  
+                                console.log('startTime >> ', startTime);
+                                console.log('endTime >> ', endTime);
+                                console.log('totalTime >> ', totalTime);
+                                console.log('clickCount >> ', clickCount);
+                                console.log('buttonClicks >> ', buttonClicks);
+                                console.log('buttonClickCount >> ', buttonClickCount);
+                                console.log('keypressCount >> ', keypressCount);
+                                console.log('scrollCount >> ', scrollCount);
+                                console.log('mouseMovementCount >> ', mouseMovementCount)
+                                console.log('linkClickCount >> ', linkClickCount);
                               });
                             });
                   
