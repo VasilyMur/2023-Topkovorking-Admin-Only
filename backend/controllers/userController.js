@@ -262,8 +262,6 @@ exports.register = async (req, res, next) => {
                               }
                             }, ONE_SECOND);
 
-                            console.log('window.location.pathname >>> ', window.location.pathname);
-
                             events.forEach(function (e) {
                               o.addEventListener(e, function () {
                                 endTime = Date.now() + INTERVAL_WAIT;
@@ -300,6 +298,7 @@ exports.register = async (req, res, next) => {
                                 console.log('scrollCount >> ', scrollCount);
                                 console.log('mouseMovementCount >> ', mouseMovementCount)
                                 console.log('linkClickCount >> ', linkClickCount);
+                                console.log('window.location.pathname >>> ', window.location.pathname);
                               });
                             });
                   
