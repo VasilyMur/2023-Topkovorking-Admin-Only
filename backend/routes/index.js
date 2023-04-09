@@ -159,7 +159,7 @@ router.get('/staticGetAllSpaces', staticController.getAllSpaces);
 
 
 // TEST >>> to delete
-router.post('/processTraffic', 
+router.get('/processTraffic', 
     userController.processTraffic
     );
 
