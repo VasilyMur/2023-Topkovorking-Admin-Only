@@ -8,7 +8,7 @@ import createEmotionCache from '../utils/createEmotionCache';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="ru">
         <Head>
           <link
             rel="stylesheet"
@@ -34,7 +34,6 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           <Main />
-          <NextScript />
           <NextScript />
           {/* <script
             src={`https://maps.googleapis.com/maps/api/js?key=${process.env.MAP_KEY}&libraries=places&language=ru`}

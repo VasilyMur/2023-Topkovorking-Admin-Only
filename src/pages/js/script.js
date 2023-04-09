@@ -1,3 +1,29 @@
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+
+const ScriptPage = () => (
+  <>
+    <body>
+      <pre>
+        {`(function() {
+     "use strict";
+     var a = window.location,
+         o = window.document,
+         r = o.currentScript,
+         s = r.getAttribute("data-api") || new URL(r.src).origin + "/api/event";
+
+         console.log('a >> ', a);
+         console.log('o >> ', o);
+         console.log('r >> ', r);
+         console.log('s >> ', s);
+    })();`}
+
+      </pre>
+    </body>
+  </>
+
+  );
+  
+  export default ScriptPage;
 
 
 // (function () {

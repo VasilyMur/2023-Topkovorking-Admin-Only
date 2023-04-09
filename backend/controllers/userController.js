@@ -219,7 +219,7 @@ exports.register = async (req, res, next) => {
       console.log('client IP >>>>>> ', clientIp);
       console.log('req IP >>>>>> ', req.ip);
   
-        res.status(200);
+        res.status(200).send('ok');
         return; // добавил return и не протестировал!
   
     } catch (e) {
