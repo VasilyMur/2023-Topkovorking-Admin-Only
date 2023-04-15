@@ -215,126 +215,96 @@ exports.register = async (req, res, next) => {
     try {
 
 
-      const script = `(function() {
-                        "use strict";
-                        var a = window.location,
-                            o = window.document,
-                            r = o.currentScript,
-                            s = r.getAttribute("data-api") || new URL(r.src).origin + "/api/event";
-
-                            console.log('s   >>>> ', s);
-
-                            const actionsData = {};
-
-                            let complete = false;
-                            let currentPage = window.location.pathname;
-
-                            let INITIAL_WAIT = 3000;
-                            let INTERVAL_WAIT = 10000;
-                            let ONE_SECOND = 1000;
-
-                            var events = [
-                                "mouseup", 
-                                "keydown", 
-                                "scroll", 
-                                "mousemove"
-                            ];
-
-                            // Metrics
-                            let startTime = Date.now();
-                            let endTime = startTime + INITIAL_WAIT;
-                            let totalTime = 0;
-                            let clickCount = 0;
-                            let buttonClickCount = 0;
-                            let keypressCount = 0;
-                            let scrollCount = 0;
-                            let linkClickCount = 0;
-
-                            let mouseActions = {};
-                            screenWidth = window.screen.width;
-                            screenHeight = window.screen.height;
-
-
-                            const countDown = setInterval(function () {
-
-                                if (!o.hidden && startTime <= endTime) {
-                                startTime = Date.now();
-                                totalTime += ONE_SECOND;
-
-                                } else {
-                                    console.log('save  it on complete >>>>> ');
-                                    clearInterval(countDown);
-                                    storageSave();
-                                    return;
-                                }
-                            }, ONE_SECOND);
-
-                            function formatTime(ms) {
-                                return Math.floor(ms / 1000);
-                            }
-
-                            function storageSave() {
-
-                              const pageActions = {
-                                  currentPage,
-                                  totalTime,
-                                  clickCount,
-                                  buttonClickCount,
-                                  linkClickCount,
-                                  keypressCount,
-                                  scrollCount,
-                                  mouseActions,
-                                  screenWidth,
-                                  screenHeight
-                              };
-                          
-                              
-                              actionsData[currentPage] = pageActions;
-                          
-                              localStorage.setItem('activity', JSON.stringify(actionsData));
-                          }
-                          
-                          
-                          function onVisibilityChange() {
-                              console.log('visibilityState  >>>>>>>>>>>>>>>.', document.visibilityState);
-                              if (document.visibilityState !== 'visible') {
-                                  console.log('visibilityState storage set ---  >>>>>>>>>>>>>>>.');
-                                  localStorage.setItem('visibility', 'user left');
-                                  
-                              } 
-                            }
-
-                            document.addEventListener('visibilitychange', onVisibilityChange);
-
-                            events.forEach(function (eventName) {
-
-                              o.addEventListener(eventName, function (event) {
-                                  endTime = Date.now() + INTERVAL_WAIT;
-                      
-                                  if (eventName === "mouseup") {
-                                      clickCount++;
-                      
-                                      if (event.target.nodeName === 'BUTTON') {   
-                                          buttonClickCount++;
-                                      }
-                                      else if (event.target.nodeName === 'A') {
-                                          linkClickCount++;
-                                      }
-                                  }
-                                  else if (eventName === "keydown") {
-                                      keypressCount++;
-                                  }
-                                  else if (eventName === "scroll") {
-                                      scrollCount++;
-                                  }
-                                  else if (eventName === "mousemove") {
-                                      mouseActions[event.timeStamp] = {timeStamp: event.timeStamp, clientx: event.clientX, clienty: event.clientY,}
-                                  }
-                      
-                              });
-                          });
-
-                      })()`;
+      const script = `(function () {
+        "use strict";
+      
+        var a = window.location,
+          o = window.document,
+          r = o.currentScript,
+          s = r.getAttribute("data-api") || new URL(r.src).origin + "/api/event";
+        console.log("s   >>>> ", s);
+        var actionsData = {};
+        var complete = false;
+        var currentPage = window.location.pathname;
+        var INITIAL_WAIT = 3000;
+        var INTERVAL_WAIT = 10000;
+        var ONE_SECOND = 1000;
+        var events = ["mouseup", "keydown", "scroll", "mousemove"];
+      
+        // Metrics
+        var startTime = Date.now();
+        var endTime = startTime + INITIAL_WAIT;
+        var totalTime = 0;
+        var clickCount = 0;
+        var buttonClickCount = 0;
+        var keypressCount = 0;
+        var scrollCount = 0;
+        var linkClickCount = 0;
+        var mouseActions = {};
+        var screenWidth = window.screen.width;
+        var screenHeight = window.screen.height;
+        var countDown = setInterval(function () {
+          if (!o.hidden && startTime <= endTime) {
+            startTime = Date.now();
+            totalTime += ONE_SECOND;
+          } else {
+            console.log("save  it on complete >>>>> ");
+            clearInterval(countDown);
+            storageSave();
+            return;
+          }
+        }, ONE_SECOND);
+        function formatTime(ms) {
+          return Math.floor(ms / 1000);
+        }
+        function storageSave() {
+          var pageActions = {
+            currentPage: currentPage,
+            totalTime: totalTime,
+            clickCount: clickCount,
+            buttonClickCount: buttonClickCount,
+            linkClickCount: linkClickCount,
+            keypressCount: keypressCount,
+            scrollCount: scrollCount,
+            mouseActions: mouseActions,
+            screenWidth: screenWidth,
+            screenHeight: screenHeight
+          };
+          actionsData[currentPage] = pageActions;
+          localStorage.setItem("activity", JSON.stringify(actionsData));
+        }
+        function onVisibilityChange() {
+          console.log("visibilityState  >>>>>>>>>>>>>>>.", document.visibilityState);
+          if (document.visibilityState !== "visible") {
+            console.log("visibilityState storage set ---  >>>>>>>>>>>>>>>.");
+            localStorage.setItem("visibility", "user left");
+          }
+        }
+        document.addEventListener("visibilitychange", onVisibilityChange);
+        events.forEach(function (eventName) {
+          o.addEventListener(eventName, function (event) {
+            endTime = Date.now() + INTERVAL_WAIT;
+            if (eventName === "mouseup") {
+              clickCount++;
+              if (event.target.nodeName === "BUTTON") {
+                buttonClickCount++;
+              } else if (event.target.nodeName === "A") {
+                linkClickCount++;
+              }
+            } else if (eventName === "keydown") {
+              keypressCount++;
+            } else if (eventName === "scroll") {
+              scrollCount++;
+            } else if (eventName === "mousemove") {
+              mouseActions[event.timeStamp] = {
+                timeStamp: event.timeStamp,
+                clientx: event.clientX,
+                clienty: event.clientY
+              };
+            }
+          });
+        });
+      })();`;
   
         res.status(200).send(script);
         return; // добавил return и не протестировал!
@@ -352,7 +322,7 @@ exports.register = async (req, res, next) => {
         console.log('client IP >>>>>> ', clientIp);
         console.log('req IP >>>>>> ', req.ip);
         console.log('FingerPrint ----- >>>>>> ', req.fingerprint);
-        
+
         console.log('req.body >>>>>> ', req.body);
         console.log('req.body data >>>>>> ', req.body.data);
 
