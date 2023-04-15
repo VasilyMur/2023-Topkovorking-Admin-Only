@@ -273,13 +273,34 @@ exports.register = async (req, res, next) => {
           actionsData[currentPage] = pageActions;
           localStorage.setItem("activity", JSON.stringify(actionsData));
         }
-        function onVisibilityChange() {
-          console.log("visibilityState  >>>>>>>>>>>>>>>.", document.visibilityState);
-          if (document.visibilityState !== "visible") {
-            console.log("visibilityState storage set ---  >>>>>>>>>>>>>>>.");
-            localStorage.setItem("visibility", "user left");
+
+        var visibilityChange = (function (window) {
+          var inView = false;
+          return function (fn) {
+            window.onfocus = window.onblur = window.onpageshow = window.onpagehide = function (e) {
+              if ({focus:1, pageshow:1}[e.type]) {
+                if (inView) return;
+                fn("visible");
+                inView = true;
+              } else if (inView) {
+                fn("hidden");
+                inView = false;
+              }
+            };
+          };
+          }(this));
+          visibilityChange(function (state) {
+
+          if (state=="hidden")
+          {
+            localStorage.setItem("user left", "true");
           }
-        }
+          if (state=="visible")
+          {
+            console.log("visible");
+          }
+          });
+
         document.addEventListener("visibilitychange", onVisibilityChange);
         events.forEach(function (eventName) {
           o.addEventListener(eventName, function (event) {
@@ -313,7 +334,7 @@ exports.register = async (req, res, next) => {
       console.log(e);
     }
   };
-
+  // https://data36.com/data-collection-websites-javascript-front-end-apache2-back-end/
     // TEST TO DELETE
     exports.processTraffic = async (req, res) => {
       try {
