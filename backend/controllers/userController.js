@@ -289,6 +289,7 @@ exports.register = async (req, res, next) => {
             };
           };
           }(this));
+          
           visibilityChange(function (state) {
 
           if (state=="hidden")
@@ -301,7 +302,7 @@ exports.register = async (req, res, next) => {
           }
           });
 
-        document.addEventListener("visibilitychange", onVisibilityChange);
+     
         events.forEach(function (eventName) {
           o.addEventListener(eventName, function (event) {
             endTime = Date.now() + INTERVAL_WAIT;
