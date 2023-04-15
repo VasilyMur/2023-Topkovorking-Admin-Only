@@ -211,14 +211,9 @@ exports.register = async (req, res, next) => {
 
 
   // TEST TO DELETE
-  exports.processTraffic = async (req, res) => {
+  exports.getScriptSource = async (req, res) => {
     try {
-  
-      console.log('ready to process >>>>>>>>>>>>>>>>>>>>> ');
-      const clientIp = requestIp.getClientIp(req); 
-      console.log('client IP >>>>>> ', clientIp);
-      console.log('req IP >>>>>> ', req.ip);
-      console.log('FingerPrint ----- >>>>>> ', req.fingerprint);
+
 
       const script = `(function() {
                         "use strict";
@@ -227,86 +222,117 @@ exports.register = async (req, res, next) => {
                             r = o.currentScript,
                             s = r.getAttribute("data-api") || new URL(r.src).origin + "/api/event";
 
-                            var INITIAL_WAIT = 3000;
-                            var INTERVAL_WAIT = 10000;
-                            var ONE_SECOND = 1000;
-                          
+                            console.log('s   >>>> ', s);
+
+                            const actionsData = {};
+
+                            let complete = false;
+                            let currentPage = window.location.pathname;
+
+                            let INITIAL_WAIT = 3000;
+                            let INTERVAL_WAIT = 10000;
+                            let ONE_SECOND = 1000;
+
                             var events = [
-                              "mouseup", 
-                              "keydown", 
-                              "scroll", 
-                              "mousemove"
+                                "mouseup", 
+                                "keydown", 
+                                "scroll", 
+                                "mousemove"
                             ];
-                            var startTime = Date.now();
-                            var endTime = startTime + INITIAL_WAIT;
-                            var totalTime = 0;
-                            var clickCount = 0;
-                            var buttonClicks = {
-                              total: 0,
-                            };
-                            var buttonClickCount = 0;
-                            var keypressCount = 0;
-                            var scrollCount = 0;
-                            var mouseMovementCount = 0;
-                            var linkClickCount = 0;
 
-                            function formatTime(ms) {
-                              return Math.floor(ms / 1000);
-                            }
+                            // Metrics
+                            let startTime = Date.now();
+                            let endTime = startTime + INITIAL_WAIT;
+                            let totalTime = 0;
+                            let clickCount = 0;
+                            let buttonClickCount = 0;
+                            let keypressCount = 0;
+                            let scrollCount = 0;
+                            let linkClickCount = 0;
 
-                            setInterval(function () {
-                              if (!document.hidden && startTime <= endTime) {
+                            let mouseActions = {};
+                            screenWidth = window.screen.width;
+                            screenHeight = window.screen.height;
+
+
+                            const countDown = setInterval(function () {
+
+                                if (!o.hidden && startTime <= endTime) {
                                 startTime = Date.now();
                                 totalTime += ONE_SECOND;
-                    
-                                console.log('totalTime >>>>> ', formatTime(totalTime));
-                              }
+
+                                } else {
+                                    console.log('save  it on complete >>>>> ');
+                                    clearInterval(countDown);
+                                    storageSave();
+                                    return;
+                                }
                             }, ONE_SECOND);
 
-                            events.forEach(function (e) {
-                              o.addEventListener(e, function () {
-                                endTime = Date.now() + INTERVAL_WAIT;
-                                if (e === "mouseup") {
-                                  clickCount++;
-                                  if (event.target.nodeName === 'BUTTON') {          
-                                    if(!buttonClicks[event.target.innerText]){
-                                      buttonClicks[event.target.innerText] = 0;
-                                    }
-                                    buttonClicks[event.target.innerText] += 1;
-                                    buttonClicks.total += 1;         
+                            function formatTime(ms) {
+                                return Math.floor(ms / 1000);
+                            }
+
+                            function storageSave() {
+
+                              const pageActions = {
+                                  currentPage,
+                                  totalTime,
+                                  clickCount,
+                                  buttonClickCount,
+                                  linkClickCount,
+                                  keypressCount,
+                                  scrollCount,
+                                  mouseActions,
+                                  screenWidth,
+                                  screenHeight
+                              };
+                          
+                              
+                              actionsData[currentPage] = pageActions;
+                          
+                              localStorage.setItem('activity', JSON.stringify(actionsData));
+                          }
+                          
+                          
+                          function onVisibilityChange() {
+                              console.log('visibilityState  >>>>>>>>>>>>>>>.', document.visibilityState);
+                              if (document.visibilityState !== 'visible') {
+                                  console.log('visibilityState storage set ---  >>>>>>>>>>>>>>>.');
+                                  localStorage.setItem('visibility', 'user left');
+                                  
+                              } 
+                            }
+
+                            document.addEventListener('visibilitychange', onVisibilityChange);
+
+                            events.forEach(function (eventName) {
+
+                              o.addEventListener(eventName, function (event) {
+                                  endTime = Date.now() + INTERVAL_WAIT;
+                      
+                                  if (eventName === "mouseup") {
+                                      clickCount++;
+                      
+                                      if (event.target.nodeName === 'BUTTON') {   
+                                          buttonClickCount++;
+                                      }
+                                      else if (event.target.nodeName === 'A') {
+                                          linkClickCount++;
+                                      }
                                   }
-                                  else if (event.target.nodeName === 'A') {
-                                    linkClickCount++;
+                                  else if (eventName === "keydown") {
+                                      keypressCount++;
                                   }
-                                }
-                                else if (e === "keydown") {
-                                  keypressCount++;
-                                }
-                                else if (e === "scroll") {
-                                  scrollCount++;
-                                }
-                                else if (e === "mousemove") {
-                                  mouseMovementCount++;
-                                }
-                  
-                                console.log('startTime >> ', startTime);
-                                console.log('endTime >> ', endTime);
-                                console.log('totalTime >> ', totalTime);
-                                console.log('clickCount >> ', clickCount);
-                                console.log('buttonClicks >> ', buttonClicks);
-                                console.log('buttonClickCount >> ', buttonClickCount);
-                                console.log('keypressCount >> ', keypressCount);
-                                console.log('scrollCount >> ', scrollCount);
-                                console.log('mouseMovementCount >> ', mouseMovementCount)
-                                console.log('linkClickCount >> ', linkClickCount);
-                                console.log('window.location.pathname >>> ', window.location.pathname);
+                                  else if (eventName === "scroll") {
+                                      scrollCount++;
+                                  }
+                                  else if (eventName === "mousemove") {
+                                      mouseActions[event.timeStamp] = {timeStamp: event.timeStamp, clientx: event.clientX, clienty: event.clientY,}
+                                  }
+                      
                               });
-                            });
-                  
-                            console.log('a >> ', a);
-                            console.log('o >> ', o);
-                            console.log('r >> ', r);
-                            console.log('s >> ', s);
+                          });
 
                       })()`;
   
@@ -317,4 +343,22 @@ exports.register = async (req, res, next) => {
       console.log(e);
     }
   };
+
+    // TEST TO DELETE
+    exports.processTraffic = async (req, res) => {
+      try {
+        console.log('ready to process >>>>>>>>>>>>>>>>>>>>> ');
+        const clientIp = requestIp.getClientIp(req); 
+        console.log('client IP >>>>>> ', clientIp);
+        console.log('req IP >>>>>> ', req.ip);
+        console.log('FingerPrint ----- >>>>>> ', req.fingerprint);
+        
+        console.log('req.body >>>>>> ', req.body);
+        console.log('req.body data >>>>>> ', req.body.data);
+
+
+      } catch (e) {
+        console.log(e);
+      }
+  }
 
