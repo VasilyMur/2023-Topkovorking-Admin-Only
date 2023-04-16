@@ -243,38 +243,9 @@ exports.register = async (req, res, next) => {
         var mouseActions = {};
         var screenWidth = window.screen.width;
         var screenHeight = window.screen.height;
-        var countDown = setInterval(function () {
-          if (!o.hidden && startTime <= endTime) {
-            startTime = Date.now();
-            totalTime += ONE_SECOND;
-          } else {
-            console.log("save  it on complete >>>>> ");
-            clearInterval(countDown);
-            storageSave();
-            return;
-          }
-        }, ONE_SECOND);
-        function formatTime(ms) {
-          return Math.floor(ms / 1000);
-        }
-        function storageSave() {
-          var pageActions = {
-            currentPage: currentPage,
-            totalTime: totalTime,
-            clickCount: clickCount,
-            buttonClickCount: buttonClickCount,
-            linkClickCount: linkClickCount,
-            keypressCount: keypressCount,
-            scrollCount: scrollCount,
-            mouseActions: mouseActions,
-            screenWidth: screenWidth,
-            screenHeight: screenHeight
-          };
-          actionsData[currentPage] = pageActions;
-          localStorage.setItem("activity", JSON.stringify(actionsData));
-        }
 
         var visibilityChange = (function (window) {
+          console.log('window insdie fn >>> ', window);
           var inView = false;
           return function (fn) {
             window.onfocus =
@@ -308,6 +279,37 @@ exports.register = async (req, res, next) => {
           }
         });
 
+
+        var countDown = setInterval(function () {
+          if (!o.hidden && startTime <= endTime) {
+            startTime = Date.now();
+            totalTime += ONE_SECOND;
+          } else {
+            console.log("save  it on complete >>>>> ");
+            clearInterval(countDown);
+            storageSave();
+            return;
+          }
+        }, ONE_SECOND);
+        function formatTime(ms) {
+          return Math.floor(ms / 1000);
+        }
+        function storageSave() {
+          var pageActions = {
+            currentPage: currentPage,
+            totalTime: totalTime,
+            clickCount: clickCount,
+            buttonClickCount: buttonClickCount,
+            linkClickCount: linkClickCount,
+            keypressCount: keypressCount,
+            scrollCount: scrollCount,
+            mouseActions: mouseActions,
+            screenWidth: screenWidth,
+            screenHeight: screenHeight
+          };
+          actionsData[currentPage] = pageActions;
+          localStorage.setItem("activity", JSON.stringify(actionsData));
+        }
      
         events.forEach(function (eventName) {
           o.addEventListener(eventName, function (event) {
