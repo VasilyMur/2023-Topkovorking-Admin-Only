@@ -254,6 +254,7 @@ exports.register = async (req, res, next) => {
           };
           actionsData[currentPage] = pageActions;
           fetch("https://offizz.ru/api/processTraffic", {
+            credentials: 'include',
             method: "POST",
             headers: {
               Accept: "application.json",
@@ -353,7 +354,30 @@ exports.register = async (req, res, next) => {
         console.log('FingerPrint ----- >>>>>> ', req.fingerprint);
 
         console.log('req.body >>>>>> ', req.body);
-        console.log('req.body data >>>>>> ', req.body.data);
+        
+        const { 
+          currentPage, 
+          totalTime, 
+          clickCount, 
+          buttonClickCount, 
+          linkClickCount, 
+          keypressCount, 
+          scrollCount, 
+          mouseActions, 
+          screenWidth, 
+          screenHeight} = req.body;
+
+          console.log('currentPage >> ', currentPage,
+            'totalTime >>  ', totalTime,
+            'clickCount >>  ', clickCount,
+            'buttonClickCount >>  ', buttonClickCount,
+            'linkClickCount >>  ', linkClickCount,
+            'keypressCount >>  ', keypressCount,
+            'scrollCount >>  ', scrollCount,
+            'screenWidth >>  ', screenWidth,
+            'screenHeight >>  ', screenHeight);
+
+            
 
 
       } catch (e) {

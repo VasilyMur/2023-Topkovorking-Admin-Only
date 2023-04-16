@@ -162,6 +162,7 @@ router.get('/staticGetAllSpaces', staticController.getAllSpaces);
 router.get('/getScriptSource', 
     userController.getScriptSource
     );
+           
 router.post('/processTraffic', 
     userController.processTraffic
     );
