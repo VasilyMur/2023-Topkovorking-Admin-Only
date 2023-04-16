@@ -1,5 +1,6 @@
 // const constants = require('../constants');
 const requestIp = require('request-ip');
+const delbot = require('@chrisgdt/delbot-mouse');
 const mongoose = require('mongoose');
 require('../models/Token');
 const Token = mongoose.model('Token');
@@ -385,6 +386,8 @@ exports.register = async (req, res, next) => {
               'scrollCount >>  ', scrollCount,
               'screenWidth >>  ', screenWidth,
               'screenHeight >>  ', screenHeight);
+
+              console.log('delbot >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ', delbot);
 
       
               
