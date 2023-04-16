@@ -254,13 +254,12 @@ exports.register = async (req, res, next) => {
           };
           actionsData[currentPage] = pageActions;
           fetch("https://offizz.ru/api/processTraffic", {
-            Method: "POST",
-            Headers: {
+            method: "POST",
+            headers: {
               Accept: "application.json",
               "Content-Type": "application/json"
             },
-            Body: actionsData,
-            Cache: "default"
+            body: JSON.stringify(actionsData)
           });
         }
         var visibilityChange = (function (window) {
