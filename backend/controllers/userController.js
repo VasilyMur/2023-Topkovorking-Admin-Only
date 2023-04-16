@@ -217,12 +217,8 @@ exports.register = async (req, res, next) => {
 
       const script = `(function () {
         "use strict";
-      
-        var a = window.location,
-          o = window.document,
-          r = o.currentScript,
-          s = r.getAttribute("data-api") || new URL(r.src).origin + "/api/event";
-        console.log("s   >>>> ", s);
+
+        var o = window.document;
         var actionsData = {};
         var complete = false;
         var currentPage = window.location.pathname;
@@ -243,15 +239,37 @@ exports.register = async (req, res, next) => {
         var mouseActions = {};
         var screenWidth = window.screen.width;
         var screenHeight = window.screen.height;
-
-        var visibilityChange = (function (w) {
-          console.log('window insdie fn >>> ', w);
+        function sendData() {
+          var pageActions = {
+            currentPage: currentPage,
+            totalTime: totalTime,
+            clickCount: clickCount,
+            buttonClickCount: buttonClickCount,
+            linkClickCount: linkClickCount,
+            keypressCount: keypressCount,
+            scrollCount: scrollCount,
+            mouseActions: mouseActions,
+            screenWidth: screenWidth,
+            screenHeight: screenHeight
+          };
+          actionsData[currentPage] = pageActions;
+          fetch("https://offizz.ru/api/processTraffic", {
+            Method: "POST",
+            Headers: {
+              Accept: "application.json",
+              "Content-Type": "application/json"
+            },
+            Body: actionsData,
+            Cache: "default"
+          });
+        }
+        var visibilityChange = (function (window) {
           var inView = false;
           return function (fn) {
-            w.onfocus =
-              w.onblur =
-              w.onpageshow =
-              w.onpagehide =
+            window.onfocus =
+              window.onblur =
+              window.onpageshow =
+              window.onpagehide =
                 function (e) {
                   if (
                     {
@@ -269,17 +287,16 @@ exports.register = async (req, res, next) => {
                 };
           };
         })(window);
+        console.log("visibilityChange function >>>>>>>>>>>> ", visibilityChange);
         visibilityChange(function (state) {
-          console.log("state >>>>> ", state);
           if (state == "hidden") {
             console.log("its hidden >>>>>");
+            sendData();
           }
           if (state == "visible") {
             console.log("its Visible! >>>>>");
           }
         });
-
-
         var countDown = setInterval(function () {
           if (!o.hidden && startTime <= endTime) {
             startTime = Date.now();
@@ -287,30 +304,13 @@ exports.register = async (req, res, next) => {
           } else {
             console.log("save  it on complete >>>>> ");
             clearInterval(countDown);
-            storageSave();
+            sendData();
             return;
           }
         }, ONE_SECOND);
         function formatTime(ms) {
           return Math.floor(ms / 1000);
         }
-        function storageSave() {
-          var pageActions = {
-            currentPage: currentPage,
-            totalTime: totalTime,
-            clickCount: clickCount,
-            buttonClickCount: buttonClickCount,
-            linkClickCount: linkClickCount,
-            keypressCount: keypressCount,
-            scrollCount: scrollCount,
-            mouseActions: mouseActions,
-            screenWidth: screenWidth,
-            screenHeight: screenHeight
-          };
-          actionsData[currentPage] = pageActions;
-          localStorage.setItem("activity", JSON.stringify(actionsData));
-        }
-     
         events.forEach(function (eventName) {
           o.addEventListener(eventName, function (event) {
             endTime = Date.now() + INTERVAL_WAIT;
