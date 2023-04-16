@@ -373,7 +373,7 @@ exports.register = async (req, res, next) => {
               screenWidth, 
               screenHeight } = pageActions;
 
-              const mouseActionsToCheck = mouseActions.slice(0, 120);
+              const mouseActionsToCheck = Object.keys(mouseActions).slice(0, 120);
               console.log('mouse actions ------------------>>>>> ', mouseActionsToCheck);
 
               console.log('currentPage >> ', currentPage,
