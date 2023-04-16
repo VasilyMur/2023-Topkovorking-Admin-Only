@@ -354,28 +354,46 @@ exports.register = async (req, res, next) => {
         console.log('FingerPrint ----- >>>>>> ', req.fingerprint);
 
         console.log('req.body >>>>>> ', req.body);
-        
-        const { 
-          currentPage, 
-          totalTime, 
-          clickCount, 
-          buttonClickCount, 
-          linkClickCount, 
-          keypressCount, 
-          scrollCount, 
-          mouseActions, 
-          screenWidth, 
-          screenHeight} = req.body;
 
-          console.log('currentPage >> ', currentPage,
-            'totalTime >>  ', totalTime,
-            'clickCount >>  ', clickCount,
-            'buttonClickCount >>  ', buttonClickCount,
-            'linkClickCount >>  ', linkClickCount,
-            'keypressCount >>  ', keypressCount,
-            'scrollCount >>  ', scrollCount,
-            'screenWidth >>  ', screenWidth,
-            'screenHeight >>  ', screenHeight);
+        if (req.body && Object.keys(req.body).length) {
+          
+          for (const pageName of Object.keys(req.body)) {
+            console.log('pageName >>>>', pageName);
+            const pageActions = req.body[pageName];
+
+            const { 
+              currentPage, 
+              totalTime, 
+              clickCount, 
+              buttonClickCount, 
+              linkClickCount, 
+              keypressCount, 
+              scrollCount, 
+              mouseActions, 
+              screenWidth, 
+              screenHeight } = pageActions;
+
+              const mouseActionsToCheck = mouseActions.slice(0, 120);
+              console.log('mouse actions ------------------>>>>> ', mouseActionsToCheck);
+
+              console.log('currentPage >> ', currentPage,
+              'totalTime >>  ', totalTime,
+              'clickCount >>  ', clickCount,
+              'buttonClickCount >>  ', buttonClickCount,
+              'linkClickCount >>  ', linkClickCount,
+              'keypressCount >>  ', keypressCount,
+              'scrollCount >>  ', scrollCount,
+              'screenWidth >>  ', screenWidth,
+              'screenHeight >>  ', screenHeight);
+
+      
+              
+          }
+        }
+        
+ 
+
+
 
             
 
