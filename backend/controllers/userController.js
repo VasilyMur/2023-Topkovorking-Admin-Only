@@ -244,14 +244,14 @@ exports.register = async (req, res, next) => {
         var screenWidth = window.screen.width;
         var screenHeight = window.screen.height;
 
-        var visibilityChange = (function (window) {
-          console.log('window insdie fn >>> ', window);
+        var visibilityChange = (function (w) {
+          console.log('window insdie fn >>> ', w);
           var inView = false;
           return function (fn) {
-            window.onfocus =
-              window.onblur =
-              window.onpageshow =
-              window.onpagehide =
+            w.onfocus =
+              w.onblur =
+              w.onpageshow =
+              w.onpagehide =
                 function (e) {
                   if (
                     {
@@ -268,7 +268,7 @@ exports.register = async (req, res, next) => {
                   }
                 };
           };
-        })(this);
+        })(window);
         visibilityChange(function (state) {
           console.log("state >>>>> ", state);
           if (state == "hidden") {
