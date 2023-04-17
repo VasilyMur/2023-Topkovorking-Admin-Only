@@ -374,21 +374,36 @@ exports.register = async (req, res, next) => {
               screenWidth, 
               screenHeight } = pageActions;
 
-              const mouseActionsToCheck = Object.keys(mouseActions).slice(0, 120);
+              const mouseActionsToCheck = Object.values(mouseActions).slice(0, 120);
               console.log('mouse actions ------------------>>>>> ', mouseActionsToCheck);
 
-              console.log('currentPage >> ', currentPage,
-              'totalTime >>  ', totalTime,
-              'clickCount >>  ', clickCount,
-              'buttonClickCount >>  ', buttonClickCount,
-              'linkClickCount >>  ', linkClickCount,
-              'keypressCount >>  ', keypressCount,
-              'scrollCount >>  ', scrollCount,
-              'screenWidth >>  ', screenWidth,
-              'screenHeight >>  ', screenHeight);
+              // console.log('currentPage >> ', currentPage,
+              // 'totalTime >>  ', totalTime,
+              // 'clickCount >>  ', clickCount,
+              // 'buttonClickCount >>  ', buttonClickCount,
+              // 'linkClickCount >>  ', linkClickCount,
+              // 'keypressCount >>  ', keypressCount,
+              // 'scrollCount >>  ', scrollCount,
+              // 'screenWidth >>  ', screenWidth,
+              // 'screenHeight >>  ', screenHeight);
 
               console.log('delbot >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ', delbot);
 
+              const recorder = new delbot.Recorder(screenWidth, screenHeight);
+              // Set max size to prevent high memory usage
+              recorder.setMaxSize(1e6);
+
+              for (const mouseAction of mouseActionsToCheck) {
+                recorder.addRecord({
+                  time: mouseAction.timeStamp,
+                  x: mouseAction.clientX,
+                  y: mouseAction.clientY,
+                  type: 'Move' // optional
+                });
+              }
+              
+              const isHuman = recorder.isHuman(delbot.Models.rnn1);
+              console.log('is HUMAN >>>>>>>>>>>>>>>>> ', isHuman)
       
               
           }
