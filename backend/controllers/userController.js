@@ -402,7 +402,8 @@ exports.register = async (req, res, next) => {
                 });
               }
               
-              const isHuman = recorder.isHuman(delbot.Models.rnn1);
+              const isHuman = await recorder.isHuman(delbot.Models.rnn1);
+              
               console.log('is HUMAN >>>>>>>>>>>>>>>>> ', isHuman)
       
               
