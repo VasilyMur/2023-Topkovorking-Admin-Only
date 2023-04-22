@@ -1,4 +1,4 @@
-const metro = [
+module.exports = {metroData: [
     {
       id: '1',
       name: 'moscow',
@@ -3009,6 +3009,5 @@ const metro = [
         },
       ],
     },
-  ];
+  ]};
   
-  export default metro;

@@ -123,10 +123,10 @@ export const getUserSpace = (id: string) => async (dispatch: Dispatch) => {
       dispatch(Actions.inputStationChange('', '', '', ''));
   }
   export const setStationChange = 
-  (id: string, lat: number | null, lng: number | null, name: string): AppThunkAction => (dispatch, getState) => {
+  (id: string, lat: number | null, lng: number | null, name: string, slug?: string): AppThunkAction => (dispatch, getState) => {
     const latString = lat ? lat.toString() : '';
     const lngString = lng ? lng.toString() : '';
-      dispatch(Actions.inputStationChange(id, latString, lngString, name));
+      dispatch(Actions.inputStationChange(id, latString, lngString, name, slug));
   }
 
   export const setHoursOpenChange = 
@@ -212,7 +212,6 @@ export const setSaveSpaceData = (): AppThunkAction => async (dispatch, getState)
     dispatch(Actions.setLoading(true));
     dispatch(Actions.setAlert(''));
 
-  
     const response = await SpacesService.saveUserSpace(space);
 
     if (Object.keys(response.data).length) {

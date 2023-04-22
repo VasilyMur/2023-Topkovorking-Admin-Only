@@ -1,5 +1,8 @@
+// const CyrillicToTranslit = require('cyrillic-to-translit-js');
 const mongoose = require('mongoose');
-const axios = require('axios');
+// const fs = require('fs');
+// const path = require('path'); 
+// const axios = require('axios');
 const spacesHandler = require('../handlers/spaces-handler');
 const imagesHandler = require('../handlers/images-handler');
 require('../models/Space');
@@ -9,7 +12,7 @@ const Space = mongoose.model('Space');
 const User = mongoose.model('User');
 const CustomerRequest = mongoose.model('CustomerRequest');
 const constants = require('../constants');
-
+// const cyrillicToTranslit = new CyrillicToTranslit();
 
   exports.getUserSpaces = async (req, res, next) => {
     try {
@@ -17,6 +20,40 @@ const constants = require('../constants');
       const spaces = await spacesHandler.getUserSpaces(email);
 
       // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.
+      // const metroData = metro.metroData.find(city => city.id === '1');
+      // console.log('metro >>>>>>>>>>> ', metro);
+      // console.log('metroData >>>>>>>>>>> ', metroData);
+
+      // const newLines = [];
+
+
+      //   metroData.lines.forEach(l => {     
+      //     const newStations = [];
+
+      //     l.stations.forEach(s => {
+      //       const newS =  ({
+      //         ...s,
+      //         slug: cyrillicToTranslit.transform(s.name, '-').toLowerCase()
+      //       });
+
+      //       newStations.push(newS);
+      //     });
+
+      //     newLines.push({
+      //       id: l.id,
+      //       hex_color: l.hex_color,
+      //       name: l.name,
+      //       stations: newStations
+      //     });
+
+      //   });
+
+      // console.log('newlines >>>>>>>>>>>>>>>>>>>>>>>>>>>> ', newLines);
+
+
+    //  console.log('newMetroDataMoscow >>>>>>>>>>> ', newMetroDataMoscow);
+    // fs.writeFileSync(`newlinesmoscow.json`, JSON.stringify(newLines));
+
       // console.log('update many >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.');
       // const tst = await Space.find();
       // console.log('tsttttttttt >>> **** ', tst)

@@ -17,6 +17,7 @@ export const initialState: EditState = {
         name: '',
         type: '',
         city: '',
+        subwaySlug: null,
         admin: null,
         adminDetails: null,
         created: undefined,
@@ -142,13 +143,16 @@ export const editSlice = createSlice({
                 } }
         })
         .addCase(Actions.inputStationChange, (s, a) => {
-            s.space = {...s.space, subway: { 
-                ...s.space.subway, 
-                id: a.payload.id,
-                name: a.payload.name,
-                lat: a.payload.lat,
-                lng: a.payload.lng,
-            } }
+            s.space = {
+                ...s.space, 
+                subwaySlug: a.payload.slug ?? null,
+                subway: { 
+                    ...s.space.subway, 
+                    id: a.payload.id,
+                    name: a.payload.name,
+                    lat: a.payload.lat,
+                    lng: a.payload.lng,
+                } };
         })
         .addCase(Actions.inputHoursOpenChange, (s, a) => {
             

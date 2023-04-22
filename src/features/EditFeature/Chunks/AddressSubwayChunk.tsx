@@ -54,8 +54,9 @@ const AddressSubwayChunk: FC = () => {
     const details = stationOptions.find(
       (res) => res.name === event.target.value
     );
-    const { id, lat, lng, name } = details;
-    actions.setStationChange(id, lat, lng, name);
+
+    const { id, lat, lng, name, slug } = details;
+    actions.setStationChange(id, lat, lng, name, slug);
   };
 
   const onAddressChange = (

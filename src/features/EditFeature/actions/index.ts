@@ -64,8 +64,8 @@ export const inputLineChange = createAction(
 /** Изменение станции метро. */
 export const inputStationChange = createAction(
   `${prefix}/inputStationChange`,
-  (id: string, lat: string, lng: string, name: string) =>
-      ({ payload: { id, lat, lng, name } })
+  (id: string, lat: string, lng: string, name: string, slug?: string) =>
+      ({ payload: { id, lat, lng, name, slug } })
 );
 
 /** Изменение часов открытия. */

@@ -18,6 +18,12 @@ const spaceSchema = new Schema({
     lowercase: true,
     trim: true,
   },
+  subwaySlug: {
+    type: String,
+    lowercase: true,
+    trim: true,
+    default: null
+  },
   name: {
     type: String,
     trim: true,
@@ -174,7 +180,17 @@ const spaceSchema = new Schema({
     lng: {
       type: String,
       trim: true,
-    }
+    },
+    slug: {
+      type: String,
+      trim: true,
+      default: null
+    },
+    url: {
+      type: String,
+      trim: true,
+      default: null
+    },
   },
   schedule: {
     monday: {

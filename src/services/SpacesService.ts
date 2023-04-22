@@ -21,7 +21,7 @@ import {
 import { ISpace } from '../models/ISpace';
 import { ICustomerRequest } from '../models/ICustomerRequest';
 
-export default class UserService {
+export default class SpacesService {
     static updateSpaceMainImage(url: string, fileName: string, fileId: string, spaceId: string): Promise<AxiosResponse<string>> {
         return api.post<string>(`${URL_BASE}${URL_API_UPDATE_SPACE_MAIN_IMAGE}`, { url, fileName, fileId, spaceId });
     }

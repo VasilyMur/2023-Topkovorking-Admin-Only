@@ -1,6 +1,7 @@
 /* eslint-disable no-loop-func */
 const mongoose = require('mongoose');
 const cloudinary = require('cloudinary').v2;
+const metro = require('../controllers/metro');
 require('../models/User');
 const User = mongoose.model('User');
 require('../models/Space');
@@ -56,31 +57,50 @@ exports.getUserSpaces = async (email) => {
 // })
 
 
-    // const spaces = await Space.find();
+  //   const spacesList = await Space.find();
+  //   const metroData = metro.metroData.find(city => city.id === '1');
+  //  // console.log('metrodata >>>>> ', metroData);
+
+  //   const stations = [];
+  //   metroData.lines.forEach(l => {
+  //     l.stations.forEach(s => {
+  //       stations.push(s);
+  //     })
+  //   })
+
+    // console.log('moscow stations >>>>>>>>>>>>>>> ', stations[0]);
+    // console.log('moscow stations >>>>>>>>>>>>>>> ', stations.length);
+
+
+
+    // eslint-disable-next-line no-plusplus
+    // for (let i = 0; i < spacesList.length; i++) {
+
     
-    // let curDate = Date.now();
-    // // eslint-disable-next-line no-plusplus
-    // for (let i = 0; i < spaces.length; i++) {
+    //   if (spacesList[i].city === 'moscow') {
 
-    //   const newOffers = [];
+    //     console.log('>>>>>> ', spacesList[i]);
 
-    //   // eslint-disable-next-line no-plusplus
-    //   for (let o = 0; o < spaces[i].offers.length; o++) {
+      //   const stationData = stations.find(s => spacesList[i].subway.name === s.name);
 
-    //     const newOffer = { ...spaces[i].offers[o], uid: curDate }
+      //   console.log('original space name >>>>> ', spacesList[i].name, ' >>>  ', spacesList[i].subway.name);
+      //   console.log('stationData >>>>>>>>>>>>>> ', stationData);
         
-    //     newOffers.push(newOffer);
-    //     curDate += 10;
-        
-    //   }
+      //   if (stationData) {
 
   
-    //   await Space.updateOne(
-    //     { _id: spaces[i]._id },
-    //     { '$set': { 'offers': newOffers } }
-    // );
+      //     await Space.updateOne(
+      //       { _id: spacesList[i]._id },
+      //       { subwaySlug: stationData.slug }
+      //     );
+      //   } 
+       
+    //   }
 
     // }
+
+ 
+    // console.log('spacesList >>>>> ', spacesList);
 
     // const spacesCheck = await Space.find();
     // spacesCheck.forEach(r => {
