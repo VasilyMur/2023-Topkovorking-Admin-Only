@@ -13,6 +13,7 @@ export const initialState: DraftState = {
         name: '',
         type: '',
         city: '',
+        subwaySlug: null,
         admin: null,
         adminDetails: null,
         created: undefined,

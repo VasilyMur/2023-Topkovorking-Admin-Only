@@ -57,7 +57,7 @@ exports.getUserSpaces = async (email) => {
 // })
 
 
-  //   const spacesList = await Space.find();
+
   //   const metroData = metro.metroData.find(city => city.id === '1');
   //  // console.log('metrodata >>>>> ', metroData);
 
@@ -79,21 +79,21 @@ exports.getUserSpaces = async (email) => {
     
     //   if (spacesList[i].city === 'moscow') {
 
-    //     console.log('>>>>>> ', spacesList[i]);
+    //     console.log('>>>>>> ', spacesList[i].subwaySlug);
 
-      //   const stationData = stations.find(s => spacesList[i].subway.name === s.name);
+        // const stationData = stations.find(s => spacesList[i].subway.name === s.name);
 
-      //   console.log('original space name >>>>> ', spacesList[i].name, ' >>>  ', spacesList[i].subway.name);
-      //   console.log('stationData >>>>>>>>>>>>>> ', stationData);
+        // console.log('original space name >>>>> ', spacesList[i].name, ' >>>  ', spacesList[i].subway.name);
+        // console.log('stationData >>>>>>>>>>>>>> ', stationData);
         
-      //   if (stationData) {
+        // if (stationData) {
 
   
-      //     await Space.updateOne(
-      //       { _id: spacesList[i]._id },
-      //       { subwaySlug: stationData.slug }
-      //     );
-      //   } 
+        //   await Space.updateOne(
+        //     { _id: spacesList[i]._id },
+        //     { subwaySlug: stationData.slug }
+        //   );
+        // } 
        
     //   }
 
