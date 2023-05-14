@@ -207,4 +207,24 @@ export const WEEKDAYS_MAPPED = {
     sunday: 'Воскресение'
 }
 
+export const BEAUTY_TYPE_BROVIST = 'brovist';
+export const BEAUTY_TYPE_VIZAZHIST = 'vizazhist';
+export const BEAUTY_TYPE_BARBER = 'barber';
+export const BEAUTY_TYPE_KOSMETOLOG = 'kosmetolog';
+export const BEAUTY_TYPE_MASSAGE = 'massage';
+export const BEAUTY_TYPE_MANIKUR = 'manikur';
+export const BEAUTY_TYPE_PEDICURE = 'pedicure';
+export const BEAUTY_TYPE_PARIKMAHER = 'parikmakher';
+
+export const BEAUTY_TYPES = {
+    [BEAUTY_TYPE_BROVIST]: 'Бровист',
+    [BEAUTY_TYPE_VIZAZHIST]: 'Визажист',
+    [BEAUTY_TYPE_BARBER]: 'Барбер',
+    [BEAUTY_TYPE_KOSMETOLOG]: 'Косметолог',
+    [BEAUTY_TYPE_MASSAGE]: 'Массажист',
+    [BEAUTY_TYPE_MANIKUR]: 'Мастер маникюра',
+    [BEAUTY_TYPE_PEDICURE]: 'Мастер педикюра',
+    [BEAUTY_TYPE_PARIKMAHER]: 'Парикмахер', 
+}
+
 

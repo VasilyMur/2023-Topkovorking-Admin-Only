@@ -147,4 +147,16 @@ export const removeTag = createAction(
   ({ payload: { tag } })
 );
 
+export const addBeautyType = createAction(
+  `${prefix}/addBeautyType`,
+  (type: string) => 
+  ({ payload: { type } })
+);
+
+export const removeBeautyType = createAction(
+  `${prefix}/removeBeautyType`,
+  (type: string) => 
+  ({ payload: { type } })
+);
+
 

@@ -14,6 +14,7 @@ export const initialState: DraftState = {
         type: '',
         city: '',
         subwaySlug: null,
+        beautyTypes: [],
         admin: null,
         adminDetails: null,
         created: undefined,

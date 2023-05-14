@@ -244,6 +244,19 @@ export const removeTag =
   dispatch(Actions.removeTag(tag));
 }
 
+export const addBeautyType = 
+(newType: string): AppThunkAction => (dispatch, getState) => {
+  const { beautyTypes } = getState().edit.space;
+  if (!beautyTypes.includes(newType)) {
+    dispatch(Actions.addBeautyType(newType));
+  }
+}
+
+export const removeBeautyType = 
+(type: string): AppThunkAction => (dispatch, getState) => {
+ dispatch(Actions.removeBeautyType(type));
+}
+
 // AUTH BACKBLAZE
 export const getUploadImageUrl = (): AppThunkAction => async (dispatch, getState) => {
   try {

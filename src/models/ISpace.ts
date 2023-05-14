@@ -65,6 +65,7 @@ export interface ISpace {
     name: string,
     type: string,
     city: string,
+    beautyTypes: string[],
     subwaySlug: null | string,
     admin: null | string,
     adminDetails: null | ISpaceAdminDetails,

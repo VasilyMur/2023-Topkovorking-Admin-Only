@@ -18,6 +18,7 @@ export const initialState: EditState = {
         type: '',
         city: '',
         subwaySlug: null,
+        beautyTypes: [],
         admin: null,
         adminDetails: null,
         created: undefined,
@@ -174,6 +175,7 @@ export const editSlice = createSlice({
         .addCase(Actions.deleteOffer, (s, a) => {
             s.space.offers = s.space.offers.filter(res => res.uid !== a.payload.uid);           
         })   
+        // Tags
         .addCase(Actions.addTag, (s, a) => {
             console.log('add payload >>>> ', a.payload.tag);
           s.space.tags = [...s.space.tags, a.payload.tag];                      
@@ -181,6 +183,15 @@ export const editSlice = createSlice({
         .addCase(Actions.removeTag, (s, a) => {
             console.log('remove payload >>>> ', a.payload.tag);
            s.space.tags = s.space.tags.filter(t => t !== a.payload.tag);                   
+        })
+        // Beauty Types
+        .addCase(Actions.addBeautyType, (s, a) => {
+            console.log('add payload >>>> ', a.payload.type);
+          s.space.beautyTypes = [...s.space.beautyTypes, a.payload.type];                      
+        })
+        .addCase(Actions.removeBeautyType, (s, a) => {
+            console.log('remove payload >>>> ', a.payload.type);
+            s.space.beautyTypes = s.space.beautyTypes.filter(t => t !== a.payload.type);                   
         })
         // Images Upload
         .addCase(Actions.addUploadMainImageData, (s, a) => {

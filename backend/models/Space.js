@@ -24,6 +24,7 @@ const spaceSchema = new Schema({
     trim: true,
     default: null
   },
+  beautyTypes: [String],
   name: {
     type: String,
     trim: true,
